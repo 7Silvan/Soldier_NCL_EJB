@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{ABSOLUTE} %5p %c{1}:%F:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="controllerBox" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs\\controllerBox.log"/>
+        <param name="MaxFileSize" value="100KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{ABSOLUTE} %5p %t %c{1}:%F:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="modelBox" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs\\modelBox.log"/>
+        <param name="MaxFileSize" value="100KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{ABSOLUTE} %5p %t %c{1}:%F:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="viewBox" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs\\viewBox.log"/>
+        <param name="MaxFileSize" value="100KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{ABSOLUTE} %5p %t %c{1}:%F:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="controller">
+        <level value="debug"></level>
+        <appender-ref ref="controllerBox"/>
+    </logger>
+    <logger name="model">
+        <level value="debug"></level>
+        <appender-ref ref="modelBox"/>
+    </logger>
+    <logger name="view">
+        <level value="debug"></level>
+        <appender-ref ref="viewBox"/>
+    </logger>
+    <root>
+        <priority value="debug"></priority>
+        <appender-ref ref="stdout"/>
+    </root>
+</log4j:configuration>

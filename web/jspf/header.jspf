@@ -1,0 +1,106 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%-- Logger log = Logger.getLogger("view"); --%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Soldiers</title>
+    <link rel="icon" href="assets/img/favicon.ico"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.css" type="text/css"/>
+    <link rel="Stylesheet" href="assets/css/jquery-ui-1.8.20.custom.css" type="text/css"/>
+    <script type="text/javascript" src="assets/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui-1.8.20.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/application.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#date').datepicker({
+                changeMonth:true,
+                changeYear:true,
+                dateFormat:"yy-mm-dd"
+            });
+            $('#checkoutForm').validate();
+        });
+    </script>
+</head>
+<body>
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="container-fluid"><a target="_new" href="#" class="brand"> Soldiers <span
+                style="background-color:#387690;padding-top:100px" class="label warning">Alpha</span> </a>
+            <ul class="nav secondary-nav">
+                <li><a href="<c:url value='/' />" target="_blank">Home</a></li>
+                <li><a href="<c:url value="https://github.com/7Silvan/Soldier_NCL"/> " target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="sidebar page-sidebar" id="page-sidebar">
+        <div id="msg"></div>
+        <ul style="list-style-type:none;margin-left:0;">
+            <li><a href="<c:url value='/index.jsp' />">
+                <p class="navbar_item navbar_home">Home </p>
+            </a></li>
+            <li><a href="<c:url value='/viewSoldiers' />">
+                <p class="navbar_item navbar_wiki">View Top of Soldiers</p>
+            </a></li>
+            <li><a href="<c:url value='/viewUnits' />">
+                <p class="navbar_item navbar_wiki">View Units</p>
+            </a></li>
+            <li><a href="<c:url value='/viewLocations' />">
+                <p class="navbar_item navbar_wiki">View Locations</p>
+            </a></li>
+
+            <c:url var="url" value="/viewSoldiers">
+                <c:param name="action" value="getSearchResults"/>
+            </c:url>
+            <li><a href="${url}">
+                <p class="navbar_item navbar_wiki">Find Soldier</p>
+            </a></li>
+            <c:url var="url" value="/viewSoldiers">
+                <c:param name="action" value="addSoldier"/>
+            </c:url>
+            <li><a href="${url}">
+                <p class="navbar_item navbar_wiki">Add Soldier</p>
+            </a></li>
+        </ul>
+
+    </div>
+    <div class="content page-content" id="page-content">
+        <div id="banner-top">
+            <div id="banner-path">
+                <c:if test="${fn:contains(requestScope.action, 'getSubsOfSoldier')}">
+                    <c:url var="rootUrl" value="/viewSoldiers">
+                        <c:if test="${requestScope.subAction ne null}" >
+                            <c:param name="subAction" value="${requestScope.subAction}"/>
+                            <c:param name="soldierIdMatch" value="${requestScope.soldierIdMatch}"/>
+                        </c:if>
+                    </c:url>
+                    <a href="${rootUrl}">ROOT</a>
+                    <c:out value=">>"/>
+                    <c:forEach items="${requestScope.hierarchyList}" var="soldier" varStatus="soldierLoop">
+                        <c:url var="upperSoldiersUrl" value="/viewSoldiers">
+                            <c:param name="subAction" value="${requestScope.subAction}"/>
+                            <c:param name="soldierIdMatch" value="${requestScope.soldierIdMatch}"/>
+                            <c:param name="action" value="getSubsOfSoldier"/>
+                            <c:param name="queriedSoldierId"
+                                     value="${soldier.id}"/>
+                        </c:url>
+                        <a href="${upperSoldiersUrl}">${soldier.name}</a>
+                        <c:if test="${!soldierLoop.last}">
+                            <c:out value=">>"/>
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+            </div>
+        </div>

@@ -1,0 +1,120 @@
+body {
+    background-image: url(../img/page-background.png);
+    background-repeat: repeat-y;
+}
+
+#banner-top {
+    height: 80px;
+    margin-left: -20px;
+    margin-right: -20px;
+    border-bottom: solid 2px #CCC;
+    overflow: hidden;
+    background-image: url(../img/banner-top-background.png);
+}
+
+#banner-top a:link {
+    color: white;
+}
+
+#course-logo-text {
+    float: left;
+    width: 600px;
+}
+
+#banner-path {
+    color: #CCCCCC;
+    height: 80px;
+    margin-left: 50px;
+    margin-top: 35px;
+    font-size: large;
+}
+
+#banner-info {
+    float: right;
+    color: white;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.my-name {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.page-sidebar {
+    padding-top: 25px;
+}
+
+.page-content {
+    padding-top: 0px;
+}
+
+.navbar_item {
+    padding-left: 32px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+}
+
+.navbar_home {
+    background-image: url(../img/navbar_icons/home.png);
+    background-repeat: no-repeat;
+}
+
+.navbar_wiki {
+    background-image: url(../img/navbar_icons/wiki.png);
+    background-repeat: no-repeat;
+}
+
+.course-announcement {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.page-sidebar > ul > li > a {
+    display: block;
+}
+
+#course-logo-text > a {
+    display: block;
+}
+
+.plain-table tbody th, .plain-table tbody td {
+    border: none;
+    padding: 2px 4px;
+}
+
+.nav a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.error {
+    color: #c00;
+    font-style: italic;
+}
+
+th.sortable {
+    /*    color: #666;
+
+   text-decoration: underline;*/
+    cursor: pointer;
+}
+
+th.sortable:hover {
+    /*color: black; */
+}
+
+th.sorted-asc, th.sorted-desc {
+    /*color: black; */
+}
